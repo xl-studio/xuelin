@@ -1,4 +1,4 @@
-<html><head><meta charset="utf-8"><style>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>
   :root {
     --u: min(100vw / 1920, 100vh / 1080, 1px);
     --bg-1: #1a1a1a;
@@ -408,8 +408,618 @@
     margin-left: auto;
   }
 
+  /* ---------- 作品集配图 ---------- */
+  .folio-slide {
+    height: calc(1080 * var(--u));
+    min-height: calc(1080 * var(--u));
+    max-height: calc(1080 * var(--u));
+    overflow: hidden;
+  }
+  .folio-slide .page-head h2 { font-size: calc(40 * var(--u)); }
+  .folio {
+    flex: 1;
+    min-height: 0;
+    margin-top: calc(18 * var(--u));
+    display: grid;
+    gap: calc(12 * var(--u));
+  }
+  .kicker {
+    flex: none;
+    font-family: var(--font-body);
+    font-style: normal;
+    font-weight: 400;
+    font-size: calc(14 * var(--u));
+    line-height: 1.45;
+    letter-spacing: normal;
+    color: var(--ink-60);
+  }
+  .pic {
+    min-width: 0;
+    min-height: 0;
+    overflow: hidden;
+    background: #fff;
+    border: calc(1.5 * var(--u)) solid var(--line);
+  }
+  .pic img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  .pic img.top { object-fit: contain; object-position: center top; }
+  .pic img.contain {
+    object-fit: contain;
+    object-position: center;
+    background: #fff;
+  }
+  a.shot {
+    min-width: 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: calc(8 * var(--u));
+    text-decoration: none;
+    color: inherit;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+  a.shot:hover .pic { border-color: var(--signal); }
+  .pane, .acol, .vcard {
+    min-width: 0;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: calc(8 * var(--u));
+  }
+  .fill {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    gap: calc(8 * var(--u));
+  }
+  .lead, .midtitle {
+    display: flex;
+    align-items: center;
+    gap: calc(14 * var(--u));
+    font-size: calc(26 * var(--u));
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--ink);
+  }
+  .lead {
+    font-size: calc(20 * var(--u));
+    letter-spacing: normal;
+  }
+  .midtitle { justify-content: center; }
+  .midtitle::before, .midtitle::after {
+    content: "";
+    width: calc(140 * var(--u));
+    height: calc(2 * var(--u));
+    background: var(--line);
+  }
+
+  .folio-slide:has(.folio-articles) {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+  }
+  .folio-articles {
+    flex: none;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    align-content: start;
+    margin-bottom: calc(28 * var(--u));
+  }
+  .shot .pic { flex: 1; }
+  .folio-articles .shot .pic {
+    flex: none;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 555 / 841;
+  }
+  .folio-articles .pic img.top {
+    object-fit: cover;
+    object-position: center top;
+  }
+
+  .folio-baidu { grid-template-columns: 1.15fr 1fr; grid-template-rows: minmax(0, 1fr); }
+  .baidu-l { grid-template-rows: 1.2fr 1fr; }
+  .baidu-l .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: calc(8 * var(--u));
+    min-height: 0;
+  }
+  .charts { grid-template-columns: 1fr; grid-template-rows: repeat(4, 1fr); }
+
+  .folio-slide:has(.folio-events) {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+  }
+  .folio-events {
+    flex: none;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    gap: calc(56 * var(--u));
+    margin-bottom: calc(40 * var(--u));
+  }
+  .event-rows {
+    display: grid;
+    gap: calc(14 * var(--u));
+    min-width: 0;
+  }
+  .event-top {
+    display: grid;
+    grid-template-columns: 1.5fr 0.6985fr;
+    gap: calc(14 * var(--u));
+    min-width: 0;
+  }
+  .event-top .wide { aspect-ratio: 4800 / 3200; }
+  .event-top .phone { aspect-ratio: 1668 / 2388; }
+  .event-bottom .pic { aspect-ratio: 3984 / 2656; }
+  .folio-events .pic {
+    width: 100%;
+    height: auto;
+  }
+  .folio-events .pic img {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .folio-awards {
+    container-type: inline-size;
+    grid-template-columns: 1.25fr 0.95fr 0.82fr;
+    grid-template-rows: minmax(0, 1fr);
+  }
+  .folio-awards .banner,
+  .folio-awards .doc {
+    flex: none;
+    align-self: stretch;
+    width: 100%;
+    max-width: none;
+    height: calc((100cqw - 24 * var(--u)) * 1.25 / 3.02 * 147 / 771);
+  }
+  .folio-awards .banner img.contain,
+  .folio-awards .doc img.contain {
+    object-fit: cover;
+    object-position: center;
+  }
+  .grow { flex: 1; }
+  .mosaic {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: calc(8 * var(--u));
+  }
+  .stack3 {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: calc(8 * var(--u));
+  }
+
+  .folio-extend { grid-template-rows: auto 1fr; }
+  .quad {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: minmax(0, 1fr);
+    gap: calc(16 * var(--u));
+    min-height: 0;
+  }
+  .vcard .pic {
+    flex: 1 1 0;
+    height: 0;
+    background: transparent;
+    border: none;
+  }
+  .vcard .pic > img.contain {
+    object-fit: contain;
+    object-position: center;
+    background: transparent;
+  }
+  .vcard h3 {
+    flex: none;
+    text-align: center;
+    font-size: calc(20 * var(--u));
+    font-weight: 700;
+  }
+  .vcard p {
+    flex: none;
+    text-align: center;
+    font-size: calc(14 * var(--u));
+    line-height: 1.45;
+    color: var(--ink-60);
+  }
+  .portraits {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    gap: calc(4 * var(--u));
+    background: #fff;
+  }
+  .portraits img {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    object-fit: cover;
+    object-position: center 18%;
+    background: #fff;
+  }
+
+  .folio-visual { grid-template-columns: 1.25fr 0.85fr; grid-template-rows: minmax(0, 1fr); }
+  .film { grid-template-rows: 1.4fr 0.72fr; }
+  .stills {
+    display: grid;
+    grid-template-columns: 0.72fr 1.15fr 1.45fr;
+    grid-template-rows: minmax(0, 1fr);
+    gap: calc(8 * var(--u));
+    min-height: 0;
+  }
+  .libs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: minmax(0, 1fr);
+    gap: calc(8 * var(--u));
+    min-height: 0;
+  }
+
+  .folio-slide:has(.folio-daily) {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    overflow: visible;
+  }
+  .folio-daily {
+    flex: none;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    gap: calc(10 * var(--u));
+    margin-bottom: calc(28 * var(--u));
+  }
+  .daily-photos,
+  .daily-docs {
+    display: grid;
+    gap: calc(10 * var(--u));
+    min-width: 0;
+  }
+  .daily-photos { grid-template-columns: 1fr 1fr; }
+  .daily-docs { grid-template-columns: 1.371fr 0.794fr; }
+  .folio-daily .pic { aspect-ratio: auto; }
+  .daily-photos .pic { aspect-ratio: 1050 / 588; }
+  .daily-docs .p03 { aspect-ratio: 769 / 561; }
+  .daily-docs .p04 { aspect-ratio: 583 / 734; }
+  .folio-daily .pic img {
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .folio-slide:has(.folio-practice) {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+    overflow: visible;
+  }
+  .folio-practice {
+    flex: none;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: calc(14 * var(--u));
+    margin-bottom: calc(28 * var(--u));
+  }
+  .phones {
+    min-width: 0;
+    display: grid;
+    gap: calc(12 * var(--u));
+  }
+  .phones-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .phones-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .phones .pic {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1170 / 2532;
+    background: transparent;
+  }
+  .phones .pic img {
+    object-fit: cover;
+    object-position: center;
+  }
+  .folio-practice .note {
+    border-left: none;
+    padding-left: 0;
+    justify-content: flex-start;
+    gap: calc(4 * var(--u));
+  }
+  .folio-practice .note p {
+    font-size: calc(20 * var(--u));
+    line-height: 1.45;
+    font-weight: 700;
+    color: var(--ink);
+  }
+  .folio-practice .note b {
+    color: var(--signal);
+    font-weight: 700;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     * { transition: none !important; animation: none !important; }
+  }
+
+  @media (max-width: 768px) {
+    :root { --u: 1px; }
+
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+    .deck-viewport,
+    .deck-stage {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+    .slide {
+      width: 100% !important;
+      max-width: 100% !important;
+      height: auto !important;
+      min-height: 0 !important;
+      max-height: none !important;
+      margin: 0 !important;
+      padding: 28px 16px 72px;
+      overflow: hidden;
+      align-items: stretch;
+    }
+    .slide * {
+      min-width: 0;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+
+    .crumb {
+      position: static;
+      left: auto;
+      right: auto;
+      top: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 10px;
+      margin: 0 0 18px;
+      font-size: 11px;
+      letter-spacing: 0.02em;
+      line-height: 1.5;
+    }
+    .crumb .tail {
+      margin-left: 0;
+      flex-basis: 100%;
+    }
+    .slide-meta {
+      left: 16px;
+      right: 16px;
+      bottom: 18px;
+      font-size: 12px;
+      letter-spacing: 0.04em;
+    }
+
+    .slide > h1,
+    .slide > .out,
+    .slide > .sub {
+      display: block !important;
+      width: 100% !important;
+      height: auto !important;
+      max-height: none !important;
+      margin: 0 0 12px !important;
+      padding: 0 !important;
+      align-self: stretch !important;
+      text-align: center !important;
+      white-space: normal !important;
+      overflow: visible !important;
+      line-height: 1.25 !important;
+    }
+    .slide > h1 {
+      font-size: 36px !important;
+      letter-spacing: 0.06em !important;
+    }
+    .slide > .out {
+      font-size: 26px !important;
+      letter-spacing: 0 !important;
+    }
+    .slide > .sub {
+      font-size: 14px !important;
+      line-height: 1.7 !important;
+    }
+
+    .hero-main { width: 100% !important; }
+    h1,
+    h1 .out,
+    h2,
+    p,
+    li,
+    .eyebrow,
+    .edu,
+    .edu span,
+    .edu b {
+      max-width: 100% !important;
+      white-space: normal !important;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+    h1 {
+      height: auto !important;
+      font-size: min(26px, 6.4vw) !important;
+      line-height: 1.35 !important;
+      letter-spacing: 0 !important;
+    }
+    h1 .out {
+      display: inline !important;
+      font-size: inherit !important;
+      letter-spacing: 0 !important;
+    }
+    .sub {
+      display: block !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      height: auto !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      font-size: 15px !important;
+      line-height: 1.7 !important;
+      white-space: normal !important;
+      text-align: left !important;
+    }
+    .page-head h2,
+    .folio-slide .page-head h2,
+    section.slide > h2 {
+      font-size: 26px !important;
+      line-height: 1.3 !important;
+      height: auto !important;
+      width: auto !important;
+      max-width: 100% !important;
+    }
+    .eyebrow {
+      flex-wrap: wrap;
+      max-width: 100%;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      line-height: 1.5;
+    }
+
+    .hero,
+    .grid2,
+    .skill-grid,
+    .folio,
+    .folio-articles,
+    .folio-baidu,
+    .folio-awards,
+    .folio-visual,
+    .folio-extend,
+    .quad,
+    .event-top,
+    .event-rows,
+    .daily-photos,
+    .daily-docs,
+    .baidu-l,
+    .baidu-l .split,
+    .charts,
+    .film,
+    .stills,
+    .libs,
+    .mosaic,
+    .stack3,
+    .fill {
+      display: grid !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      height: auto !important;
+      min-height: 0 !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      grid-template-columns: minmax(0, 1fr) !important;
+      grid-template-rows: auto !important;
+      flex: none !important;
+    }
+    .mosaic { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important; }
+    .phones { width: 100% !important; }
+    .phones-3 { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+    .phones-2 { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+    .folio-events { gap: 16px; }
+
+    .info-card,
+    .job-head,
+    .job-head h3,
+    .job,
+    .bl,
+    .bl li,
+    .stat,
+    .stat b,
+    .info-row,
+    .proj,
+    .edu,
+    .adv,
+    .pane,
+    .acol,
+    .vcard {
+      width: 100% !important;
+      max-width: 100% !important;
+      height: auto !important;
+      min-height: 0 !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+    .info-row {
+      display: flex !important;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 4px 12px;
+      font-size: 14px !important;
+    }
+    .info-row span,
+    .info-row b {
+      font-size: 14px !important;
+      white-space: normal !important;
+    }
+    .job-head {
+      display: flex !important;
+      flex-wrap: wrap;
+      height: auto !important;
+    }
+    .job-meta { align-items: flex-start; }
+    .edu { display: flex; flex-wrap: wrap; }
+    .edu em { margin-left: 0; }
+    .stat-grid { grid-template-columns: 1fr 1fr; }
+    .stat span { letter-spacing: 0.02em; white-space: normal; }
+    .bl li { overflow-wrap: anywhere; }
+
+    .pic,
+    .vcard .pic,
+    .shot .pic,
+    .folio-awards .banner,
+    .folio-awards .doc,
+    .folio-awards .grow {
+      width: 100% !important;
+      max-width: 100% !important;
+      height: auto !important;
+      flex: none !important;
+      aspect-ratio: auto;
+    }
+    .pic img,
+    .portraits img,
+    img {
+      display: block;
+      width: 100% !important;
+      max-width: 100% !important;
+      height: auto !important;
+      object-fit: contain;
+    }
+    .portraits {
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+      grid-template-rows: auto auto !important;
+      width: 100% !important;
+      height: auto !important;
+      aspect-ratio: auto !important;
+    }
+    .portraits img {
+      aspect-ratio: 3 / 4;
+      height: auto !important;
+      object-fit: cover !important;
+      object-position: center 18%;
+    }
+    .phones .pic { aspect-ratio: 1170 / 2532; }
+    .phones .pic img { height: 100% !important; object-fit: cover; }
+    .folio-articles .shot .pic { aspect-ratio: 555 / 841; }
+    .folio-articles .shot .pic img { height: 100% !important; object-fit: cover; }
+    .midtitle::before,
+    .midtitle::after { width: 24px; }
+
+    a, button {
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
   }
 </style></head><body><div class="deck-viewport" data-ink-id="ink-01a177d9-602f-7dc2-83e0-29596f04b533">
  <div class="deck-stage" data-ink-id="ink-01a177d9-602f-7765-83de-a1b753c500b7">
@@ -644,7 +1254,7 @@
       <div class="job-head" data-ink-id="ink-01a18163-3c1a-7614-a0ac-be7d8f80b168" style="width: 476px; height: 42px; margin-left: auto; margin-right: 0px;">
        <h3 data-ink-id="ink-01a18163-3c1a-7614-a0ac-c029eb7565ec" style="font-size: 19px; margin-left: 0px; margin-right: auto; width: 334px; height: 24px;">04 - 官网运维与业务支持</h3>
        <div class="job-meta" data-ink-id="ink-01a18163-3c1a-7614-a0ac-c78d63c2b2fe">
-        <span data-ink-id="ink-01a18163-3c1a-7614-a0ac-c94db210df55">日常</span> <b data-ink-id="ink-01a18163-3c1a-7614-a0ac-cc01ebb4b044">10-12</b>
+        <span data-ink-id="ink-01a18163-3c1a-7614-a0ac-c94db210df55">日常</span> <b data-ink-id="ink-01a18163-3c1a-7614-a0ac-cc01ebb4b044">10</b>
        </div>
       </div>
       <ul class="bl" data-ink-id="ink-01a18163-3c1a-7614-a0ac-d328a7af3448" style="width: 564px; height: 54px;">
@@ -669,7 +1279,7 @@
    <div class="slide-meta" data-ink-id="ink-01a18156-97b5-767c-b8e9-ef830ced0e12">
     <span class="pageno" data-ink-id="ink-01a18156-97b5-767c-b8e9-f30a6a50b643"><b data-ink-id="ink-01a18156-97b5-767c-b8e9-f5b470244c6f">03</b> / 11</span> <span data-ink-id="ink-01a18156-97b5-767c-b8e9-f8453357dc54">工作经历 · 项目经历 · 教育经历</span>
    </div>
-  </section><section class="slide" data-ink-id="ink-01a17e21-3513-723d-b6e4-fa86c055624a">
+  </section><section class="slide folio-slide" data-ink-id="ink-01a17e21-3513-723d-b6e4-fa86c055624a">
    <div class="crumb" data-ink-id="ink-01a17e21-3513-723d-b6e4-ff8b30357fef">
     <span data-ink-id="ink-01a17e21-3513-723d-b6e5-019187f40010">01 · 个人信息</span> <span data-ink-id="ink-01a17e21-3513-723d-b6e5-058e50e253c9">02 ·&nbsp;&nbsp;工作与项目</span><span class="on" data-ink-id="ink-01a17e21-3513-723d-b6e5-0b3911e4508e">03 · 作品集</span> <span class="tail" data-ink-id="ink-01a17e21-3513-723d-b6e5-0e0805fca7f0">项目经验 / Key Projects</span>
    </div>
@@ -678,10 +1288,38 @@
     <h2 data-ink-id="ink-01a17e21-3513-723d-b6e5-18e2e5815a21">01 - 品牌形象与内容传播</h2>
    </header>
    
+   
+   <div class="folio folio-articles">
+    <a class="shot" href="https://mp.weixin.qq.com/s/eihZst3yc-99VQ_lesExzA" target="_blank" rel="noopener noreferrer">
+     <em class="kicker">奖讯</em>
+     <span class="pic"><img class="top" src="images/04页  带链接/01-奖讯.png" alt="喜讯｜JJP斩获CREDAWARD地建师设计大奖四项荣誉"></span>
+    </a>
+    <a class="shot" href="https://mp.weixin.qq.com/s/8noFjinXaqbM4QKck_6WmA" target="_blank" rel="noopener noreferrer">
+     <em class="kicker">建筑文章</em>
+     <span class="pic"><img class="top" src="images/04页  带链接/02 建筑文章.png" alt="JJP新作｜东莞康华医疗清溪分院一期"></span>
+    </a>
+    <a class="shot" href="https://mp.weixin.qq.com/s/dlicPTmRmp9F3qsyg8rG_g" target="_blank" rel="noopener noreferrer">
+     <em class="kicker">室内文章</em>
+     <span class="pic"><img class="top" src="images/04页  带链接/03 室内文章.png" alt="JJP新作｜汇顶科技深圳总部大楼室内设计"></span>
+    </a>
+    <a class="shot" href="https://mp.weixin.qq.com/s/4rTLkWIoB5jckICouAzVEA" target="_blank" rel="noopener noreferrer">
+     <em class="kicker">建筑文章</em>
+     <span class="pic"><img class="top" src="images/04页  带链接/04 建筑文章.png" alt="JJP作品｜中华福音神学研究学院八德校区"></span>
+    </a>
+    <a class="shot" href="https://mp.weixin.qq.com/s/KcT5X7TjRojIQcb7wQjlTw" target="_blank" rel="noopener noreferrer">
+     <em class="kicker">活动回顾</em>
+     <span class="pic"><img class="top" src="images/04页  带链接/05 活动回顾.png" alt="活动回顾"></span>
+    </a>
+    <a class="shot" href="https://mp.weixin.qq.com/s/7yyuUXcNcAfc_2gI8gBGcw" target="_blank" rel="noopener noreferrer">
+     <em class="kicker">年会活动</em>
+     <span class="pic"><img class="top" src="images/04页  带链接/06-年会活动.png" alt="喜迎新春！跨越山海，四地同庆"></span>
+    </a>
+   </div>
+
    <div class="slide-meta" data-ink-id="ink-01a17e21-3513-723d-b6e5-1c7b69139d7f">
     <span class="pageno" data-ink-id="ink-01a17e21-3513-723d-b6e5-2145f110eba2"><b data-ink-id="ink-01a17e21-3513-723d-b6e5-279525ec0726">04</b> / 11</span> <span data-ink-id="ink-01a17e21-3513-723d-b6e5-297d78e24a74">项目文章 · 行业交流 · 百度营销</span>
    </div>
-  </section><section class="slide" data-ink-id="ink-01a17e1f-3fd0-76cd-90b8-bac55c2f38f9">
+  </section><section class="slide folio-slide" data-ink-id="ink-01a17e1f-3fd0-76cd-90b8-bac55c2f38f9">
    <div class="crumb" data-ink-id="ink-01a17e1f-3fd0-76cd-90b8-be018e68b6ec">
     <span data-ink-id="ink-01a17e1f-3fd0-76cd-90b8-c18e0b61d4b8">01 · 个人信息</span> <span data-ink-id="ink-01a17e1f-3fd0-76cd-90b8-c5dde974b073">02 ·&nbsp;&nbsp;工作与项目</span><span class="on" data-ink-id="ink-01a17e1f-3fd0-76cd-90b8-ca10dff6eaed">03 · 作品集</span> <span class="tail" data-ink-id="ink-01a17e1f-3fd0-76cd-90b8-cfe5f477560d">项目经验 / Key Projects</span>
    </div>
@@ -690,10 +1328,33 @@
     <h2 data-ink-id="ink-01a17e1f-3fd0-76cd-90b8-dbb4213bfbc1">02 - 品牌形象与内容传播</h2>
    </header>
    
+   
+   <div class="folio folio-baidu">
+    <section class="pane">
+     <em class="kicker">百度词条 · 0–1 的建立</em>
+     <div class="fill baidu-l">
+      <div class="pic"><img class="contain" src="images/05页/01.png" alt="百度百科：潘冀"></div>
+      <div class="split">
+       <div class="pic"><img class="contain" src="images/05页/02.png" alt="人物经历"></div>
+       <div class="pic"><img class="contain" src="images/05页/03.png" alt="代表著作与作品"></div>
+      </div>
+     </div>
+    </section>
+    <section class="pane">
+     <em class="kicker">百度营销 · 数据跟踪</em>
+     <div class="fill charts">
+      <div class="pic"><img class="contain" src="images/05页/04.png" alt="百度营销数据"></div>
+      <div class="pic"><img class="contain" src="images/05页/05.png" alt="百度营销数据"></div>
+      <div class="pic"><img class="contain" src="images/05页/06.png" alt="百度营销数据"></div>
+      <div class="pic"><img class="contain" src="images/05页/07.png" alt="百度营销数据"></div>
+     </div>
+    </section>
+   </div>
+
    <div class="slide-meta" data-ink-id="ink-01a17e1f-3fd0-76cd-90b8-dcdd28f595dd">
     <span class="pageno" data-ink-id="ink-01a17e1f-3fd0-76cd-90b8-e2cff677c46a"><b data-ink-id="ink-01a17e1f-3fd0-76cd-90b8-e6dbe28f4d61">05</b> / 11</span> <span data-ink-id="ink-01a17e1f-3fd0-76cd-90b8-eaaf55890563">项目文章 · 行业交流 · 百度营销</span>
    </div>
-  </section><section class="slide" data-ink-id="ink-01a17e1f-4233-72a1-8f35-b7df067ed5f6">
+  </section><section class="slide folio-slide" data-ink-id="ink-01a17e1f-4233-72a1-8f35-b7df067ed5f6">
    <div class="crumb" data-ink-id="ink-01a17e1f-4233-72a1-8f35-b9a17aba4c7f">
     <span data-ink-id="ink-01a17e1f-4233-72a1-8f35-be374d683365">01 · 个人信息</span> <span data-ink-id="ink-01a17e1f-4233-72a1-8f35-c33931b3d030">02 ·&nbsp;&nbsp;工作与项目</span><span class="on" data-ink-id="ink-01a17e1f-4233-72a1-8f35-c4d31a8c655b">03 · 作品集</span> <span class="tail" data-ink-id="ink-01a17e1f-4233-72a1-8f35-cb7889b8132a">项目经验 / Key Projects</span>
    </div>
@@ -702,10 +1363,24 @@
     <h2 data-ink-id="ink-01a17e1f-4233-72a1-8f35-d7d80ae73ab8">01 - 品牌形象与内容传播</h2>
    </header>
    
+   
+   <div class="folio folio-events">
+    <div class="lead">线上线下活动 + 演讲稿制作</div>
+    <div class="event-rows">
+     <div class="event-top">
+      <div class="pic wide"><img src="images/06页/01.JPG" alt="CIFF 中国家博会圆桌对谈"></div>
+      <div class="pic phone"><img src="images/06页/02.PNG" alt="1m 建筑直播访谈：人本四十载，预见新未来"></div>
+     </div>
+     <div class="event-bottom">
+      <div class="pic"><img src="images/06页/03.jpg" alt="CHCC 2025 现场演讲"></div>
+     </div>
+    </div>
+   </div>
+
    <div class="slide-meta" data-ink-id="ink-01a17e1f-4233-72a1-8f35-da6c5a4d2821">
     <span class="pageno" data-ink-id="ink-01a17e1f-4233-72a1-8f35-dff601df17b8"><b data-ink-id="ink-01a17e1f-4233-72a1-8f35-e2bd91242253">06</b> / 11</span> <span data-ink-id="ink-01a17e1f-4233-72a1-8f35-e780a56da25e">项目文章 · 行业交流 · 百度营销</span>
    </div>
-  </section><section class="slide" data-ink-id="ink-01a17e19-e45e-771b-aa81-4024439e456f">
+  </section><section class="slide folio-slide" data-ink-id="ink-01a17e19-e45e-771b-aa81-4024439e456f">
    <div class="crumb" data-ink-id="ink-01a17e19-e45e-771b-aa81-46501c8f60bb">
     <span data-ink-id="ink-01a17e19-e45e-771b-aa81-486d1b03f314">01 · 个人信息</span> <span data-ink-id="ink-01a17e19-e45e-771b-aa81-4ccb1a85d4c5">02 ·&nbsp;&nbsp;工作与项目</span><span class="on" data-ink-id="ink-01a17e19-e45e-771b-aa81-507560467e90">03 · 作品集</span> <span class="tail" data-ink-id="ink-01a17e19-e45e-771b-aa81-54e7c746a818">项目经验 / Key Projects</span>
    </div>
@@ -714,10 +1389,40 @@
     <h2 data-ink-id="ink-01a17e19-e45e-771b-aa81-6195aed2a2f0">02 - 专业声誉与奖项管理</h2>
    </header>
    
+   
+   <div class="folio folio-awards">
+    <section class="acol">
+     <em class="kicker">地建师设计大奖</em>
+     <div class="pic banner"><img class="contain" src="images/07页/01.jpg?v=2" alt="CREDAWARD 地建师设计大奖"></div>
+     <div class="mosaic">
+      <div class="pic"><img src="images/07页/02-web.jpg" alt="地建师申报项目"></div>
+      <div class="pic"><img src="images/07页/03.JPG" alt="地建师申报项目"></div>
+      <div class="pic"><img src="images/07页/04.jpg" alt="地建师申报项目"></div>
+      <div class="pic"><img src="images/07页/05.jpg" alt="地建师申报项目"></div>
+      <div class="pic"><img src="images/07页/06.jpg" alt="地建师申报项目"></div>
+      <div class="pic"><img src="images/07页/07-web.jpg" alt="地建师申报项目"></div>
+     </div>
+    </section>
+    <section class="acol">
+     <em class="kicker">上海市勘察设计行业协会</em>
+     <div class="pic doc"><img class="contain" src="images/07页/08.png?v=2" alt="优秀工程勘察设计项目评定通知"></div>
+     <div class="stack3">
+      <div class="pic"><img src="images/07页/09.jpg" alt="上勘协申报项目"></div>
+      <div class="pic"><img src="images/07页/10.jpg" alt="上勘协申报项目"></div>
+      <div class="pic"><img src="images/07页/11-web.jpg" alt="上勘协申报项目"></div>
+     </div>
+    </section>
+    <section class="acol">
+     <em class="kicker">建筑时报 + 上勘协</em>
+     <div class="pic doc"><img class="contain" src="images/07页/12.png?v=2" alt="上海优秀青年工程勘察设计师评选通知"></div>
+     <div class="pic grow"><img class="contain" src="images/07页/13.png" alt="青年工程勘察设计师申报图版"></div>
+    </section>
+   </div>
+
    <div class="slide-meta" data-ink-id="ink-01a17e19-e45e-771b-aa81-67c190ead9b7">
     <span class="pageno" data-ink-id="ink-01a17e19-e45e-771b-aa81-6bca23f8b3d7"><b data-ink-id="ink-01a17e19-e45e-771b-aa81-6c6f3141d7b7">07</b> / 11</span> <span data-ink-id="ink-01a17e19-e45e-771b-aa81-73940f3b88ee">地建师 · 上勘协 · dezeen</span>
    </div>
-  </section><section class="slide" data-ink-id="ink-01a17e1f-e079-75ca-8483-d0d785e0cb8a">
+  </section><section class="slide folio-slide" data-ink-id="ink-01a17e1f-e079-75ca-8483-d0d785e0cb8a">
    <div class="crumb" data-ink-id="ink-01a17e1f-e079-75ca-8483-d69b971cf5d7">
     <span data-ink-id="ink-01a17e1f-e079-75ca-8483-d9d24bcd012c">01 · 个人信息</span> <span data-ink-id="ink-01a17e1f-e079-75ca-8483-dc6188eaa1a5">02 ·&nbsp;&nbsp;工作与项目</span><span class="on" data-ink-id="ink-01a17e1f-e079-75ca-8483-e02a4e04eced">03 · 作品集</span> <span class="tail" data-ink-id="ink-01a17e1f-e079-75ca-8483-e6db907dcf84">项目经验 / Key Projects</span>
    </div>
@@ -726,10 +1431,42 @@
     <h2 data-ink-id="ink-01a17e1f-e079-75ca-8483-f38a81953da0">02 - 专业声誉与奖项管理</h2>
    </header>
    
+   
+   <div class="folio folio-extend">
+    <div class="midtitle">奖项延伸的活动</div>
+    <div class="quad">
+     <article class="vcard">
+      <div class="pic"><img src="images/08页/D62A9972.JPG" alt="女建筑师活动现场"></div>
+      <h3>女建筑师</h3>
+      <p>通过演讲访谈形成同行交流的窗口<br>多为上海本地资源</p>
+     </article>
+     <article class="vcard">
+      <div class="pic"><img class="contain" src="images/08页/ScreenShot_2026-10-28_161940_023.png" alt="专题月发表清单"></div>
+      <h3>专题月</h3>
+      <p>测试市场反馈，准备时间短<br>形成例行月度事务，共发表 17 项目</p>
+     </article>
+     <article class="vcard">
+      <div class="pic portraits">
+       <img src="images/08页/微信图片_20251128104908.jpg" alt="演讲者肖像">
+       <img src="images/08页/微信图片_20251128104915.jpg" alt="演讲者肖像">
+       <img src="images/08页/微信图片_20251128104919.jpg" alt="演讲者肖像">
+       <img src="images/08页/微信图片_20251128104922.jpg" alt="演讲者肖像">
+      </div>
+      <h3>演讲角逐</h3>
+      <p>大咖云集的现场角逐<br>设计师演讲实战的演练场</p>
+     </article>
+     <article class="vcard">
+      <div class="pic"><img src="images/08页/项目考察.jpg" alt="项目考察合影"></div>
+      <h3>项目考察</h3>
+      <p>实地考察风貌别墅、商业办公、工业项目<br>了解媒体上未公开的项目细节</p>
+     </article>
+    </div>
+   </div>
+
    <div class="slide-meta" data-ink-id="ink-01a17e1f-e079-75ca-8483-f4f7ac7f5ab5">
     <span class="pageno" data-ink-id="ink-01a17e1f-e079-75ca-8483-f9bfb87fb0cb"><b data-ink-id="ink-01a17e1f-e079-75ca-8483-ff6f74645d3e">08</b> / 11<br></span> <span data-ink-id="ink-01a17e1f-e079-75ca-8484-02d7069fd888">地建师 · 上勘协 · dezeen</span>
    </div>
-  </section><section class="slide" data-ink-id="ink-01a17e1b-ff00-7213-a6c1-74e1681d16b0">
+  </section><section class="slide folio-slide" data-ink-id="ink-01a17e1b-ff00-7213-a6c1-74e1681d16b0">
    <div class="crumb" data-ink-id="ink-01a17e1b-ff00-7213-a6c1-78270c64a395">
     <span data-ink-id="ink-01a17e1b-ff00-7213-a6c1-7e69df89e8ba">01 · 个人信息</span> <span data-ink-id="ink-01a17e1b-ff00-7213-a6c1-80937bbab17a">02 ·&nbsp;&nbsp;工作与项目</span><span class="on" data-ink-id="ink-01a17e1b-ff00-7213-a6c1-872728d42e65">03 · 作品集</span> <span class="tail" data-ink-id="ink-01a17e1b-ff00-7213-a6c1-8854e74099de">项目经验 / Key Projects</span>
    </div>
@@ -738,10 +1475,32 @@
     <h2 data-ink-id="ink-01a17e1b-ff00-7213-a6c1-97060ca4286e">03 - 视觉资产体系搭建</h2>
    </header>
    
+   
+   <div class="folio folio-visual">
+    <section class="pane">
+     <em class="kicker">24 年度尾牙影片制作</em>
+     <div class="fill film">
+      <div class="pic"><img src="images/09页/图片2.png" alt="JJP Yearly Review 2024"></div>
+      <div class="stills">
+       <div class="pic"><img src="images/09页/5W3A9121.jpg" alt="尾牙影片画面"></div>
+       <div class="pic"><img src="images/09页/N_N-7.jpg" alt="尾牙影片画面"></div>
+       <div class="pic"><img src="images/09页/_QFJ6954-Pano-web.jpg" alt="完工项目全景"></div>
+      </div>
+     </div>
+    </section>
+    <section class="pane">
+     <em class="kicker">摄影资源库搭建</em>
+     <div class="fill libs">
+      <div class="pic"><img class="contain" src="images/09页/微信截图_20251128110714.png" alt="摄影资源库文件列表"></div>
+      <div class="pic"><img class="contain" src="images/09页/微信截图_20251128110756.png" alt="摄影资源库文件列表"></div>
+     </div>
+    </section>
+   </div>
+
    <div class="slide-meta" data-ink-id="ink-01a17e1b-ff00-7213-a6c1-99b7bcc64554">
     <span class="pageno" data-ink-id="ink-01a17e1b-ff00-7213-a6c1-9f6602faee59"><b data-ink-id="ink-01a17e1b-ff00-7213-a6c1-a1ddc20ce6d3">09</b> / 11</span> <span data-ink-id="ink-01a17e1b-ff00-7213-a6c1-a5b9bf2bd602">资源库 · 完工拍摄 · 图文制作</span>
    </div>
-  </section><section class="slide" data-ink-id="ink-01a17e1d-4be4-74b5-bffe-cb01552bf1f5">
+  </section><section class="slide folio-slide" data-ink-id="ink-01a17e1d-4be4-74b5-bffe-cb01552bf1f5">
    <div class="crumb" data-ink-id="ink-01a17e1d-4be4-74b5-bffe-cee312e28851">
     <span data-ink-id="ink-01a17e1d-4be4-74b5-bffe-d0d26b76f11b">01 · 个人信息</span> <span data-ink-id="ink-01a17e1d-4be4-74b5-bffe-d5530b7814ff">02 ·&nbsp;&nbsp;工作与项目</span><span class="on" data-ink-id="ink-01a17e1d-4be4-74b5-bffe-daa558f10d0d">03 · 作品集</span> <span class="tail" data-ink-id="ink-01a17e1d-4be4-74b5-bffe-dd9a85065f1b">项目经验 / Key Projects</span>
    </div>
@@ -750,10 +1509,22 @@
     <h2 data-ink-id="ink-01a17e1d-4be4-74b5-bffe-eb97ff14d0eb">04 - 官网运维与业务支持</h2>
    </header>
    
+   
+   <div class="folio folio-daily">
+    <div class="daily-photos">
+     <div class="pic p06"><img src="images/10页  可删减/06.png" alt="TSMC 台积电晶圆十五厂"></div>
+     <div class="pic p07"><img src="images/10页  可删减/07.png" alt="高雄捷运黄线 Y15 联合开发案"></div>
+    </div>
+    <div class="daily-docs">
+     <div class="pic p03"><img src="images/10页  可删减/03.png" alt="三版官网流程"></div>
+     <div class="pic p04"><img src="images/10页  可删减/04.png" alt="JJP 潘冀联合建筑师事务所简介"></div>
+    </div>
+   </div>
+
    <div class="slide-meta" data-ink-id="ink-01a17e1d-4be4-74b5-bffe-ee6adc3b60d3">
     <span class="pageno" data-ink-id="ink-01a17e1d-4be4-74b5-bffe-f19217298ad0"><b data-ink-id="ink-01a17e1d-4be4-74b5-bffe-f5fc64e9c841">10</b> / 11</span> <span data-ink-id="ink-01a17e1d-4be4-74b5-bffe-f89368687fc1">官网运维 · 业绩整理 · 业务支持</span>
    </div>
-  </section><section class="slide" data-ink-id="ink-01a17e20-3bc0-710b-b0b5-1b7c3fd4abd0">
+  </section><section class="slide folio-slide" data-ink-id="ink-01a17e20-3bc0-710b-b0b5-1b7c3fd4abd0">
    <div class="crumb" data-ink-id="ink-01a17e20-3bc0-710b-b0b5-1eee3879a9e5">
     <span data-ink-id="ink-01a17e20-3bc0-710b-b0b5-22d3256971eb">01 · 个人信息</span> <span data-ink-id="ink-01a17e20-3bc0-710b-b0b5-243add059736">02 ·&nbsp;&nbsp;工作与项目</span><span class="on" data-ink-id="ink-01a17e20-3bc0-710b-b0b5-2923bf9f9a73">03 · 作品集</span> <span class="tail" data-ink-id="ink-01a17e20-3bc0-710b-b0b5-2ec3006aeb5e">项目经验 / Key Projects</span>
    </div>
@@ -762,6 +1533,29 @@
     <h2 data-ink-id="ink-01a17e20-3bc0-710b-b0b5-38fcc4888192">个人实践</h2>
    </header>
    
+   
+   <div class="folio folio-practice">
+    <div class="phones phones-3">
+     <div class="pic"><img src="images/11页/01.jpg" alt="家居账号主页"></div>
+     <div class="pic"><img src="images/11页/02.jpg" alt="家居账号笔记数据"></div>
+     <div class="pic"><img src="images/11页/03.jpg" alt="全屋窗帘合集"></div>
+    </div>
+    <div class="note">
+     <p>主要用来分享家装经验和家居生活的日常记录</p>
+     <p>输出笔记 <b>200+</b> 篇，涨粉 <b>1.4w+</b>，赞藏量 <b>15.6w</b>，最高浏览量 <b>14w+</b></p>
+    </div>
+    <div class="phones phones-2">
+     <div class="pic"><img src="images/11页/05.png" alt="阿布不说话账号主页"></div>
+     <div class="pic"><img src="images/11页/06.png" alt="兴趣账号笔记数据"></div>
+    </div>
+    <div class="note">
+     <p>主要用来分享爱好、生活、范围广泛、小众赛道、热点追踪等。</p>
+     <p>成长纪录类 2 个月产出小爆款 <b>2</b> 个</p>
+     <p>漫画类输出笔记 <b>70+</b> 篇，1/4 浏览量过万，</p>
+     <p>最高浏览量 <b>26w+</b>　赞藏量 <b>10.8w</b></p>
+    </div>
+   </div>
+
    <div class="slide-meta" data-ink-id="ink-01a17e20-3bc0-710b-b0b5-3dd6f80e447d">
     <span class="pageno" data-ink-id="ink-01a17e20-3bc0-710b-b0b5-4216aae85750"><b data-ink-id="ink-01a17e20-3bc0-710b-b0b5-4700c808d6d2" style="width: 24px; height: 24px;">11</b> / 11</span> <span data-ink-id="ink-01a17e20-3bc0-710b-b0b5-4831ccd16ffc">自媒体运营</span>
    </div>
